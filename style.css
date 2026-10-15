@@ -517,3 +517,454 @@ kbd {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* =========================================
+   SEARCH RESULTS PAGE
+   ========================================= */
+
+.results-page {
+  background: var(--background);
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  min-height: 100px;
+  padding: 22px 6%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.results-brand,
+.portfolio-brand {
+  flex: 0 0 auto;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.results-brand span,
+.portfolio-brand span {
+  color: var(--accent);
+}
+
+.results-search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 650px;
+  min-height: 49px;
+  padding: 5px 7px 5px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.results-search-form:focus-within {
+  border-color: rgba(34, 211, 238, 0.7);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.06);
+}
+
+.results-search-form input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.results-search-form input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.results-search-form button {
+  display: grid;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #061016;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.results-search-form button:hover {
+  background: #67e8f9;
+}
+
+.results-main {
+  width: min(100% - 44px, 650px);
+  margin: 0 auto;
+  padding: 30px 0 80px;
+}
+
+.results-summary {
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.7;
+}
+
+.profile-inline-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.profile-inline-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.search-result {
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.result-site {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.result-favicon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid #2a4656;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.result-site-details {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.result-site-details > span:first-child {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.result-url {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.results-page .result-title {
+  display: inline-block;
+  margin-bottom: 9px;
+  color: #66d9f3;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.results-page .result-title:hover {
+  color: #a5f3fc;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.results-page .result-description {
+  margin: 0;
+  color: #a7b4c5;
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   PORTFOLIO PAGE
+   ========================================= */
+
+.portfolio-page {
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(18, 76, 100, 0.14),
+      transparent 48%
+    ),
+    var(--background);
+}
+
+.portfolio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 0 7%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.portfolio-github {
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: #c4d1df;
+  font-size: 0.85rem;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.portfolio-github:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.portfolio-main {
+  width: min(100% - 44px, 1080px);
+  margin: 0 auto;
+}
+
+.portfolio-hero {
+  max-width: 780px;
+  padding: 105px 0 90px;
+}
+
+.portfolio-eyebrow {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.portfolio-hero h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 7vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 1.12;
+}
+
+.portfolio-hero h1 span {
+  color: var(--accent);
+}
+
+.portfolio-intro {
+  max-width: 660px;
+  margin: 26px 0 30px;
+  color: #a7b4c5;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.portfolio-primary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.portfolio-primary-link:hover {
+  border-color: var(--accent);
+  background: rgba(34, 211, 238, 0.18);
+}
+
+.portfolio-section {
+  padding: 48px 0 66px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-section-heading {
+  margin-bottom: 30px;
+}
+
+.portfolio-section-heading .portfolio-eyebrow {
+  margin-bottom: 10px;
+}
+
+.portfolio-section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  letter-spacing: -0.055em;
+}
+
+.portfolio-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.portfolio-project {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 25px;
+  border: 1px solid #253142;
+  border-radius: 15px;
+  background: rgba(16, 22, 32, 0.72);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.portfolio-project:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+.project-number {
+  color: var(--accent);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+}
+
+.portfolio-project h3 {
+  margin: 20px 0 10px;
+  font-size: 1.1rem;
+  letter-spacing: -0.025em;
+}
+
+.portfolio-project p {
+  margin: 0 0 23px;
+  color: #9eacbf;
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+.portfolio-project > a {
+  margin-top: auto;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.portfolio-project > a:hover {
+  color: #a5f3fc;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.project-status {
+  margin-top: auto;
+  padding: 6px 9px;
+  border: 1px solid #334155;
+  border-radius: 7px;
+  color: #a7b4c5;
+  font-size: 0.75rem;
+}
+
+.skills-section {
+  padding-bottom: 75px;
+}
+
+.technology-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.technology-list span {
+  padding: 9px 13px;
+  border: 1px solid #2a3749;
+  border-radius: 8px;
+  background: rgba(16, 22, 32, 0.7);
+  color: #bac8d8;
+  font-size: 0.84rem;
+}
+
+.portfolio-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  min-height: 70px;
+  padding: 20px 7%;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.portfolio-footer a {
+  color: var(--accent);
+}
+
+.portfolio-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+
+/* =========================================
+   RESPONSIVE LAYOUT
+   ========================================= */
+
+@media (max-width: 760px) {
+  .results-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    padding: 23px 22px;
+  }
+
+  .results-search-form {
+    max-width: none;
+  }
+
+  .portfolio-project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-hero {
+    padding: 75px 0 65px;
+  }
+
+  .portfolio-project {
+    padding: 23px;
+  }
+}
+
+@media (max-width: 420px) {
+  .results-main {
+    width: calc(100% - 36px);
+  }
+
+  .results-page .result-title {
+    font-size: 1.15rem;
+  }
+
+  .portfolio-main {
+    width: calc(100% - 36px);
+  }
+
+  .portfolio-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .portfolio-intro {
+    font-size: 0.96rem;
+  }
+
+  .portfolio-footer {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+}
