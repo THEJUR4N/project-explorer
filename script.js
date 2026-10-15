@@ -1,216 +1,109 @@
 
-"use strict";
-
-/*
- * THEJUR4N | Project Explorer
- * Project data and interactive search.
- */
-
-const projects = [
-  {
-    name: "Project Explorer",
-    category: "web",
-    description:
-      "An interactive developer portfolio with live search, technology filters, responsive design and a curated project collection.",
-    technologies: ["HTML", "CSS", "JavaScript"],
-    url: "https://github.com/THEJUR4N/project-explorer",
-    featured: true,
-    icon: "</>"
-  },
-  {
-    name: "THEJUR4N Profile",
-    category: "tools",
-    description:
-      "A bilingual GitHub profile featuring a custom terminal visual and a developer-focused presentation.",
-    technologies: ["Markdown", "SVG", "GitHub"],
-    url: "https://github.com/THEJUR4N/THEJUR4N",
-    featured: true,
-    icon: "~$"
-  },
-  {
-    name: "roepard-login",
-    category: "web",
-    description:
-      "A forked repository based on roepard-homelab. Reviewing its code and personal contributions before presenting it as a portfolio project.",
-    technologies: ["JavaScript", "PHP", "MySQL"],
-    url: "https://github.com/THEJUR4N/roepard-login",
-    featured: false,
-    icon: "{ }"
-  },
-  {
-    name: "AI & Data Explorer",
-    category: "data",
-    description:
-      "A planned demonstration project exploring natural-language data queries and interactive visualizations. Development and implementation details will be documented as the project evolves.",
-    technologies: ["Python", "SQL", "AI"],
-    url: "https://github.com/THEJUR4N",
-    featured: false,
-    icon: "AI"
-  },
-  {
-    name: "Inventory Manager",
-    category: "data",
-    description:
-      "A planned CRUD application for managing inventory records, with a focus on database operations, validation and reliable data handling.",
-    technologies: ["PHP", "MySQL", "SQL"],
-    url: "https://github.com/THEJUR4N",
-    featured: false,
-    icon: "DB"
-  }
-];
-
-const categoryLabels = {
-  web: "Web development",
-  data: "Data & AI",
-  tools: "Tools & experiments"
-};
-
+const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
-const categoryFilter = document.querySelector("#category-filter");
-const sortFilter = document.querySelector("#sort-filter");
-const projectGrid = document.querySelector("#project-grid");
-const projectCount = document.querySelector("#project-count");
-const emptyState = document.querySelector("#empty-state");
-const clearFiltersButton = document.querySelector("#clear-filters");
+const clearButton = document.querySelector("#clear-search");
+const resultsSection = document.querySelector("#results-section");
+const resultsHeading = document.querySelector("#results-heading");
+const resultTitle = document.querySelector("#result-title");
+const resultDescription = document.querySelector("#result-description");
 
-function createProjectCard(project) {
-  const article = document.createElement("article");
-  article.className = "project-card";
+const portfolioUrl =
+  "https://thejur4n.github.io/project-explorer/";
 
-  const top = document.createElement("div");
-  top.className = "card-top";
+const githubUrl = "https://github.com/THEJUR4N";
 
-  const icon = document.createElement("span");
-  icon.className = "card-icon";
-  icon.textContent = project.icon;
-  icon.setAttribute("aria-hidden", "true");
+function normalizeText(text) {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
 
-  const category = document.createElement("span");
-  category.className = "card-category";
-  category.textContent = categoryLabels[project.category];
+function searchPortfolio(query) {
+  const normalizedQuery = normalizeText(query);
 
-  top.append(icon, category);
-
-  const title = document.createElement("h3");
-  title.textContent = project.name;
-
-  const description = document.createElement("p");
-  description.textContent = project.description;
-
-  const tags = document.createElement("div");
-  tags.className = "tag-list";
-  tags.setAttribute("aria-label", "Technologies");
-
-  project.technologies.forEach((technology) => {
-    const tag = document.createElement("span");
-    tag.className = "tech-tag";
-    tag.textContent = technology;
-    tags.appendChild(tag);
-  });
-
-  const link = document.createElement("a");
-  link.className = "card-link";
-  link.href = project.url;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.textContent = "View project ↗";
-
-  article.append(top, title, description, tags, link);
-
-  if (project.featured) {
-    article.dataset.featured = "true";
+  if (!normalizedQuery) {
+    searchInput.focus();
+    return;
   }
 
-  return article;
+  const isMyName =
+    /\b(thejur4n|th3jur4n|juan esteban echeverry sanchez|juan esteban echeverry|juan echeverry)\b/i
+      .test(normalizedQuery);
+
+  resultsSection.hidden = false;
+
+  if (isMyName) {
+    resultsHeading.textContent = "Se encontró el perfil solicitado.";
+    resultTitle.textContent = "TH3JUR4N — Portafolio de desarrollador";
+    resultDescription.textContent =
+      "Explora mi perfil, proyectos y habilidades en desarrollo de software, datos e inteligencia artificial.";
+  } else {
+    resultsHeading.replaceChildren();
+
+    const prefix = document.createTextNode("Se muestran resultados de ");
+
+    const profileLink = document.createElement("a");
+    profileLink.href = githubUrl;
+    profileLink.target = "_blank";
+    profileLink.rel = "noopener noreferrer";
+    profileLink.textContent = "TH3JUR4N";
+    profileLink.className = "profile-inline-link";
+
+    resultsHeading.append(prefix, profileLink, document.createTextNode("."));
+
+    resultTitle.textContent = "TH3JUR4N — Portafolio de desarrollador";
+    resultDescription.textContent =
+      `Buscaste "${query}". Descubre mi perfil, proyectos y tecnologías en desarrollo de software, datos e inteligencia artificial.`;
+  }
+
+  resultTitle.href = portfolioUrl;
+
+  clearButton.hidden = searchInput.value.length === 0;
+
+  resultsSection.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
 }
 
-function getFilteredProjects() {
-  const query = searchInput.value.trim().toLowerCase();
-  const category = categoryFilter.value;
-  const sort = sortFilter.value;
+searchForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  searchPortfolio(searchInput.value);
+});
 
-  const filtered = projects.filter((project) => {
-    const matchesCategory =
-      category === "all" || project.category === category;
+searchInput.addEventListener("input", function () {
+  clearButton.hidden = searchInput.value.length === 0;
+});
 
-    const searchableText = [
-      project.name,
-      project.description,
-      project.category,
-      ...project.technologies
-    ].join(" ").toLowerCase();
-
-    const matchesQuery = searchableText.includes(query);
-
-    return matchesCategory && matchesQuery;
-  });
-
-  filtered.sort((a, b) => {
-    if (sort === "name") {
-      return a.name.localeCompare(b.name);
-    }
-
-    return Number(b.featured) - Number(a.featured)
-      || a.name.localeCompare(b.name);
-  });
-
-  return filtered;
-}
-
-function renderProjects() {
-  const filteredProjects = getFilteredProjects();
-  const fragment = document.createDocumentFragment();
-
-  filteredProjects.forEach((project) => {
-    fragment.appendChild(createProjectCard(project));
-  });
-
-  projectGrid.replaceChildren(fragment);
-
-  const count = filteredProjects.length;
-  projectCount.textContent =
-    `${count} ${count === 1 ? "project" : "projects"}`;
-
-  emptyState.hidden = count !== 0;
-  projectGrid.hidden = count === 0;
-}
-
-function clearFilters() {
+clearButton.addEventListener("click", function () {
   searchInput.value = "";
-  categoryFilter.value = "all";
-  sortFilter.value = "featured";
-  renderProjects();
+  clearButton.hidden = true;
+  resultsSection.hidden = true;
   searchInput.focus();
-}
+});
 
-searchInput.addEventListener("input", renderProjects);
-categoryFilter.addEventListener("change", renderProjects);
-sortFilter.addEventListener("change", renderProjects);
-clearFiltersButton.addEventListener("click", clearFilters);
+document.querySelectorAll("[data-query]").forEach(function (button) {
+  button.addEventListener("click", function () {
+    const query = button.dataset.query;
+    searchInput.value = query;
+    searchPortfolio(query);
+  });
+});
 
-document.addEventListener("keydown", (event) => {
-  const isSearchShortcut =
+document.addEventListener("keydown", function (event) {
+  if (
     event.key === "/" &&
-    !event.ctrlKey &&
-    !event.metaKey &&
-    !event.altKey;
-
-  const activeElement = document.activeElement;
-  const isTyping =
-    activeElement instanceof HTMLInputElement ||
-    activeElement instanceof HTMLTextAreaElement ||
-    activeElement instanceof HTMLSelectElement ||
-    activeElement?.isContentEditable;
-
-  if (isSearchShortcut && !isTyping) {
+    !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
+  ) {
     event.preventDefault();
     searchInput.focus();
   }
 
-  if (event.key === "Escape" && activeElement === searchInput) {
+  if (event.key === "Escape") {
     searchInput.value = "";
-    renderProjects();
+    clearButton.hidden = true;
+    resultsSection.hidden = true;
   }
 });
-
-renderProjects();
