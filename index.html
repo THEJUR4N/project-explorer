@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b10">
+  <meta name="description" content="Explore the software projects, experiments and technical work of THEJUR4N.">
+  <title>THEJUR4N | Project Explorer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="THEJUR4N home">
+      <span class="brand-mark">&gt;_</span>
+      <span>THEJUR4N<span class="brand-dot">.</span></span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="https://github.com/THEJUR4N"
+         target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow"><span class="status-dot"></span> DEVELOPER PORTFOLIO / 001</p>
+
+      <h1>Ideas into <span>working code.</span></h1>
+
+      <p class="hero-description">
+        A collection of projects, experiments and things I'm building
+        while exploring software, data and artificial intelligence.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button button-primary" href="#projects">Explore projects ↓</a>
+        <a class="button button-secondary"
+           href="https://github.com/THEJUR4N"
+           target="_blank" rel="noopener noreferrer">View GitHub ↗</a>
+      </div>
+
+      <div class="terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots"><i></i><i></i><i></i></div>
+          <span>visitor@thejur4n:~</span>
+          <span class="terminal-tag">BASH</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="prompt">visitor@thejur4n:~$</span> whoami</p>
+          <p class="terminal-output">Software developer in progress.</p>
+          <p><span class="prompt">visitor@thejur4n:~$</span> ls skills/</p>
+          <p class="terminal-output">software/ data/ web/ ai/</p>
+          <p><span class="prompt">visitor@thejur4n:~$</span> <span class="cursor">▋</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE COLLECTION</p>
+          <h2>Project explorer<span class="brand-dot">.</span></h2>
+          <p class="section-description">
+            Search the collection and filter by technology.
+          </p>
+        </div>
+        <span class="project-count" id="project-count">0 projects</span>
+      </div>
+
+      <div class="search-panel">
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Search projects, technologies..."
+            autocomplete="off"
+            aria-label="Search projects">
+          <kbd>/</kbd>
+        </label>
+
+        <div class="filter-row">
+          <label class="filter-label" for="category-filter">CATEGORY</label>
+          <select id="category-filter">
+            <option value="all">All categories</option>
+            <option value="web">Web development</option>
+            <option value="data">Data & AI</option>
+            <option value="tools">Tools & experiments</option>
+          </select>
+
+          <label class="filter-label" for="sort-filter">SORT</label>
+          <select id="sort-filter">
+            <option value="featured">Featured first</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="project-grid" id="project-grid" aria-live="polite"></div>
+
+      <div class="empty-state" id="empty-state" hidden>
+        <span class="empty-icon">⌕</span>
+        <h3>No projects found</h3>
+        <p>Try another search or clear your filters.</p>
+        <button class="button button-secondary" id="clear-filters">
+          Clear filters
+        </button>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <p class="eyebrow">A LITTLE ABOUT ME</p>
+      <h2>Curiosity drives the build.</h2>
+      <p>
+        I'm learning by building practical projects, improving my
+        programming fundamentals and exploring how software, data
+        and AI can work together to solve problems.
+      </p>
+      <a href="https://github.com/THEJUR4N"
+         target="_blank" rel="noopener noreferrer">More about my work on GitHub ↗</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>THEJUR4N<span class="brand-dot">.</span></span>
+    <span>BUILD · LEARN · ITERATE · REPEAT</span>
+    <a href="https://github.com/THEJUR4N"
+       target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+  </footer>
+</body>
+</html>
