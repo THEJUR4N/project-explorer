@@ -968,3 +968,50 @@ kbd {
     padding-left: 18px;
   }
 }
+
+/* Ajustes de la página principal */
+.home-page .home-main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.home-page .home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.home-page .brand-title {
+  text-align: center;
+  margin: 0;
+}
+
+.home-page .search-form {
+  width: 100%;
+  max-width: 580px;
+  margin: 30px auto 0;
+  box-sizing: border-box;
+}
+
+.home-page .search-form input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .home-page .home-main {
+    padding: 20px;
+  }
+
+  .home-page .search-form {
+    margin-top: 24px;
+  }
+}
