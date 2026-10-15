@@ -1,135 +1,164 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080b10">
-  <meta name="description" content="Explore the software projects, experiments and technical work of THEJUR4N.">
-  <title>THEJUR4N | Project Explorer</title>
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="TH3JUR4N: perfil, proyectos y portafolio de desarrollo de software, datos e inteligencia artificial.">
+
+  <title>TH3JUR4N Search</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23080b12'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%2322d3ee' font-family='Arial'%3EJ%3C/text%3E%3C/svg%3E">
+
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
+
 <body>
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="THEJUR4N home">
-      <span class="brand-mark">&gt;_</span>
-      <span>THEJUR4N<span class="brand-dot">.</span></span>
+  <header class="top-bar">
+    <a class="brand-small" href="./" aria-label="Inicio">
+      TH3JUR4N<span>.</span>
     </a>
 
-    <nav aria-label="Main navigation">
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="https://github.com/THEJUR4N"
-         target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-    </nav>
+    <a
+      class="github-link"
+      href="https://github.com/THEJUR4N"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub <span aria-hidden="true">↗</span>
+    </a>
   </header>
 
-  <main>
-    <section class="hero">
-      <p class="eyebrow"><span class="status-dot"></span> DEVELOPER PORTFOLIO / 001</p>
+  <main class="search-home">
+    <section class="search-content" aria-labelledby="brand-title">
+      <div class="brand-mark" aria-hidden="true">
+        <span class="brand-bracket">&lt;</span>
+        <span class="brand-letter">J</span>
+        <span class="brand-bracket">/&gt;</span>
+      </div>
 
-      <h1>Ideas into <span>working code.</span></h1>
+      <h1 id="brand-title" class="brand-title">
+        TH3JUR4N<span>.</span>
+      </h1>
 
-      <p class="hero-description">
-        A collection of projects, experiments and things I'm building
-        while exploring software, data and artificial intelligence.
+      <p class="brand-subtitle">
+        Explora mi mundo digital.
       </p>
 
-      <div class="hero-actions">
-        <a class="button button-primary" href="#projects">Explore projects ↓</a>
-        <a class="button button-secondary"
-           href="https://github.com/THEJUR4N"
-           target="_blank" rel="noopener noreferrer">View GitHub ↗</a>
-      </div>
-
-      <div class="terminal">
-        <div class="terminal-header">
-          <div class="terminal-dots"><i></i><i></i><i></i></div>
-          <span>visitor@thejur4n:~</span>
-          <span class="terminal-tag">BASH</span>
-        </div>
-        <div class="terminal-body">
-          <p><span class="prompt">visitor@thejur4n:~$</span> whoami</p>
-          <p class="terminal-output">Software developer in progress.</p>
-          <p><span class="prompt">visitor@thejur4n:~$</span> ls skills/</p>
-          <p class="terminal-output">software/ data/ web/ ai/</p>
-          <p><span class="prompt">visitor@thejur4n:~$</span> <span class="cursor">▋</span></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="projects-section" id="projects">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">THE COLLECTION</p>
-          <h2>Project explorer<span class="brand-dot">.</span></h2>
-          <p class="section-description">
-            Search the collection and filter by technology.
-          </p>
-        </div>
-        <span class="project-count" id="project-count">0 projects</span>
-      </div>
-
-      <div class="search-panel">
-        <label class="search-box">
-          <span aria-hidden="true">⌕</span>
-          <input
-            id="search-input"
-            type="search"
-            placeholder="Search projects, technologies..."
-            autocomplete="off"
-            aria-label="Search projects">
-          <kbd>/</kbd>
+      <form id="search-form" class="search-form" role="search">
+        <label class="sr-only" for="search-input">
+          Escribe lo que quieres buscar
         </label>
 
-        <div class="filter-row">
-          <label class="filter-label" for="category-filter">CATEGORY</label>
-          <select id="category-filter">
-            <option value="all">All categories</option>
-            <option value="web">Web development</option>
-            <option value="data">Data & AI</option>
-            <option value="tools">Tools & experiments</option>
-          </select>
+        <span class="search-icon" aria-hidden="true">⌕</span>
 
-          <label class="filter-label" for="sort-filter">SORT</label>
-          <select id="sort-filter">
-            <option value="featured">Featured first</option>
-            <option value="name">Name A–Z</option>
-          </select>
-        </div>
-      </div>
+        <input
+          id="search-input"
+          name="q"
+          type="search"
+          placeholder="Busca algo..."
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Buscar"
+        >
 
-      <div class="project-grid" id="project-grid" aria-live="polite"></div>
+        <button
+          id="clear-search"
+          class="clear-search"
+          type="button"
+          aria-label="Borrar búsqueda"
+          hidden
+        >
+          ×
+        </button>
 
-      <div class="empty-state" id="empty-state" hidden>
-        <span class="empty-icon">⌕</span>
-        <h3>No projects found</h3>
-        <p>Try another search or clear your filters.</p>
-        <button class="button button-secondary" id="clear-filters">
-          Clear filters
+        <button
+          class="submit-search"
+          type="submit"
+          aria-label="Buscar"
+        >
+          <span aria-hidden="true">↵</span>
+        </button>
+      </form>
+
+      <p class="search-hint">
+        Presiona <kbd>Enter</kbd> para buscar
+      </p>
+
+      <div class="quick-links" aria-label="Accesos rápidos">
+        <button type="button" data-query="THEJUR4N">
+          Mi perfil
+        </button>
+
+        <button type="button" data-query="proyectos">
+          Proyectos
+        </button>
+
+        <button type="button" data-query="desarrollo">
+          Desarrollo
         </button>
       </div>
     </section>
 
-    <section class="about-section" id="about">
-      <p class="eyebrow">A LITTLE ABOUT ME</p>
-      <h2>Curiosity drives the build.</h2>
-      <p>
-        I'm learning by building practical projects, improving my
-        programming fundamentals and exploring how software, data
-        and AI can work together to solve problems.
+    <section
+      id="results-section"
+      class="results-section"
+      aria-live="polite"
+      aria-atomic="true"
+      hidden
+    >
+      <p id="results-heading" class="results-heading"></p>
+
+      <article class="result-card">
+        <div class="result-site">
+          <div class="result-favicon" aria-hidden="true">&lt;/&gt;</div>
+
+          <div class="result-site-info">
+            <span>TH3JUR4N</span>
+            <span class="result-url">
+              thejur4n.github.io/project-explorer/
+            </span>
+          </div>
+        </div>
+
+        <a
+          id="result-title"
+          class="result-title"
+          href="https://thejur4n.github.io/project-explorer/"
+        >
+          TH3JUR4N — Portafolio de desarrollador
+        </a>
+
+        <p id="result-description" class="result-description">
+          Descubre mi perfil, proyectos y habilidades en desarrollo
+          de software, datos e inteligencia artificial.
+        </p>
+
+        <div class="result-tags" aria-label="Temas">
+          <span>Software</span>
+          <span>Datos</span>
+          <span>IA</span>
+        </div>
+      </article>
+
+      <p class="results-note">
+        Un resultado. Un universo por descubrir.
       </p>
-      <a href="https://github.com/THEJUR4N"
-         target="_blank" rel="noopener noreferrer">More about my work on GitHub ↗</a>
     </section>
   </main>
 
-  <footer>
-    <span>THEJUR4N<span class="brand-dot">.</span></span>
-    <span>BUILD · LEARN · ITERATE · REPEAT</span>
-    <a href="https://github.com/THEJUR4N"
-       target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+  <footer class="site-footer">
+    <span>Diseñado y construido por TH3JUR4N</span>
+
+    <a
+      href="https://github.com/THEJUR4N"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Ver perfil en GitHub ↗
+    </a>
   </footer>
 </body>
 </html>
